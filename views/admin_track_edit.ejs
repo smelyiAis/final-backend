@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit Track <%= track.name %> - Formula House</title>
+        <%- include('components/head.ejs') %>
+        <style>
+            body {
+                background: url("/images/login_bg.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+
+        <div class="d-flex flex-column justify-content-between vh-100">
+            <div class="login-container">
+                <form class="login-form rounded" method="POST" action="/admin/tracks/edit/<%= track._id %>">
+                    <div class="mb-3">
+                        <label for="trackName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="trackName" name="name" value="<%= track.name %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackNameRU" class="form-label">Name RU</label>
+                        <input type="text" class="form-control" id="trackNameRU" name="name_ru" value="<%= track.name_ru %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="trackDescription" name="description" required><%= track.description %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackDescriptionRU" class="form-label">Description RU</label>
+                        <textarea class="form-control" id="trackDescriptionRU" name="description_ru" required><%= track.description_ru %></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackCountry" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="trackCountry" name="country" value="<%= track.country %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackCountryRU" class="form-label">Country RU</label>
+                        <input type="text" class="form-control" id="trackCountryRU" name="country_ru" value="<%= track.country_ru %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackCity" class="form-label">City</label>
+                        <input type="text" class="form-control" id="trackCity" name="city" value="<%= track.city %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackCityRU" class="form-label">City RU</label>
+                        <input type="text" class="form-control" id="trackCityRU" name="city_ru" value="<%= track.city_ru %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackLength" class="form-label">Length (m)</label>
+                        <input type="number" class="form-control" id="trackLength" name="length" value="<%= track.length %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackCorners" class="form-label">Corners</label>
+                        <input type="number" class="form-control" id="trackCorners" name="corners" value="<%= track.corners %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackAltitudeDifference" class="form-label">Altitude Difference (m)</label>
+                        <input
+                            type="number"
+                            class="form-control"
+                            id="trackAltitudeDifference"
+                            name="attitude_difference"
+                            value="<%= track.attitude_difference %>"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackLink1" class="form-label">Link 1</label>
+                        <input type="text" class="form-control" id="trackLink1" name="link1" value="<%= track.link1 %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackLink2" class="form-label">Link 2</label>
+                        <input type="text" class="form-control" id="trackLink2" name="link2" value="<%= track.link1 %>" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="trackLink3" class="form-label">Link 3</label>
+                        <input type="text" class="form-control" id="trackLink3" name="link3" value="<%= track.link1 %>" required />
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Submit</button>
+                </form>
+            </div>
+
+            <%- include('components/footer.ejs') %>
+        </div>
+    </body>
+</html>
