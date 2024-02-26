@@ -34,7 +34,7 @@ async function adminControllerEditUser(req, res) {
     }
 }
 
-async function adminControllerEditUserPost() {
+async function adminControllerEditUserPost(req, res) {
     const userId = req.params.id;
     const { username, email } = req.body;
     try {
