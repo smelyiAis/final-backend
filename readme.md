@@ -7,7 +7,7 @@
 # How to run project?
 
 -   Clone the repository using `git clone`
--   Enter the directory using `cd sultan-backend`
+-   Enter the directory using `cd final-backend`
 -   Install required dependencies `npm i`
 -   Run the server using `npm run dev`
 
