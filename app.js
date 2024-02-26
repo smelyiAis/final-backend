@@ -1,6 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
+const port = process.env.PORT || 5000
 
 const { User, Track, Quiz } = require("./src/database/mongodb");
 const { login, signup } = require("./src/auth/auth");
@@ -94,6 +95,6 @@ app.get("/admin/tracks/edit/:id", ensureAdmin, adminControllerEditTrack);
 app.post("/admin/tracks/edit/:id", ensureAdmin, adminControllerEditTrackPost);
 app.post("/admin/tracks/add", ensureAdmin, adminControllerAddTracks);
 
-app.listen(3000, "0.0.0.0", () => {
+app.listen(port, "0.0.0.0", () => {
     console.log("Server is running on port 3000");
 });
