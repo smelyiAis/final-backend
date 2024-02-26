@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 3000;
 
 const { User, Track, Quiz } = require("./src/database/mongodb");
 const { login, signup } = require("./src/auth/auth");
