@@ -31,5 +31,6 @@
 -   Formula One Championship Limited API by Postman's User [LINK](https://documenter.getpostman.com/view/11586746/SztEa7bL#47c80b81-bf5d-4f84-8118-a80bee1631c4)
 
 # Thanks for your attention, don't forget to put 110% for this assignment :D
+# I've put in so much effort.
 
 -   Admin user: {login: 'Aisultan', password: '123123123'}
