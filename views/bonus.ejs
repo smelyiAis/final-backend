@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quiz - Formula House</title>
+        <%- include('components/head.ejs') %>
+        <style>
+            .timer {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+            .timer.red {
+                color: red;
+            }
+            .quiz-question {
+                background: #f8f9fa;
+                border: 1px solid #dee2e6;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+
+        <div class="container mt-4">
+            <div id="timer" class="timer text-center fs-2">Time left: 05:00</div>
+            <form id="quiz-form" action="/bonus" method="post" class="mb-3">
+                <input type="hidden" name="submittedTime" id="timer_hidden" value="" />
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <% questions.forEach(function(question, questionIndex) { %>
+                    <div class="col">
+                        <div class="quiz-question">
+                            <legend class="h5"><%= question.question %></legend>
+                            <% question.options.forEach(function(option, optionIndex) { %>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="answers[question_<%= question._id %>]"
+                                    id="question_<%= questionIndex %>_option_<%= optionIndex %>"
+                                    value="<%= option %>"
+                                    required
+                                />
+                                <label class="form-check-label" for="question_<%= questionIndex %>_option_<%= optionIndex %>"> <%= option %> </label>
+                            </div>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Quiz</button>
+            </form>
+        </div>
+
+        <%- include('components/footer.ejs') %>
+    </body>
+    <script>
+        const startTime = 5 * 60 - 1;
+        let time = startTime;
+        const timerElement = document.getElementById("timer");
+        const hiddenTimer = document.getElementById("timer_hidden");
+
+        const intervalId = setInterval(() => {
+            const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+            const seconds = String(time % 60).padStart(2, "0");
+            timerElement.textContent = `Time left: ${minutes}:${seconds}`;
+            hiddenTimer.value = startTime - time;
+            if (time <= 60) {
+                timerElement.classList.add("red");
+            }
+            if (time === 0) {
+                clearInterval(intervalId);
+                document.getElementById("quiz-form").submit();
+            }
+            time--;
+        }, 1000);
+    </script>
+</html>

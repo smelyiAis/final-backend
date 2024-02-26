@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin - Formula House</title>
+        <%- include('./components/head.ejs') %>
+    </head>
+    <body>
+        <div class="vh-100 d-flex flex-column justify-content-between">
+            <%- include('./components/navbar.ejs') %>
+
+            <div class="container">
+                <div class="d-flex justify-content-start flex-column">
+                    <a href="/admin/users" class="btn btn-danger w-100 py-3">Manage Users</a>
+                    <div style="height: 3vh"></div>
+                    <a href="/admin/tracks" class="btn btn-danger w-100 py-3">Manage Tracks</a>
+                </div>
+            </div>
+
+            <%- include('./components/footer.ejs') %>
+        </div>
+    </body>
+</html>

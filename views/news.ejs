@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>News - Formula House</title>
+        <%- include('components/head.ejs') %>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+        <br />
+        <div class="container">
+            <div class="fs-2">Current Formula One Championship Limited News</div>
+            <div class="">Language: <%= language %></div>
+            <br />
+            <div class="">Select another language</div>
+            <select class="form-select" name="" id="language-selector">
+                <option value="">None</option>
+                <option value="ru">Russian</option>
+                <option value="en">English</option>
+                <option value="de">Deutch</option>
+                <option value="es">Espanol</option>
+                <option value="it">Italian</option>
+                <option value="sv">Sweden</option>
+            </select>
+        </div>
+        <br />
+        <div class="container news-container">
+            <% news.forEach(function(article) { %>
+            <div class="card news-card">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="<%= article.urlToImage %>" class="img-fluid rounded-start news-image" alt="<%= article.title %>" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= article.title %></h5>
+                            <p class="card-text"><%= article.description %></p>
+                            <p class="card-text">
+                                <small class="text-muted">By <%= article.author %> - <%= new Date(article.publishedAt).toLocaleDateString() %></small>
+                            </p>
+                            <a href="<%= article.url %>" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <% }); %>
+        </div>
+
+        <%- include('components/footer.ejs') %>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let languageSelect = document.getElementById("language-selector");
+            languageSelect.addEventListener("change", function () {
+                if (languageSelect.value === "") return;
+                window.location.href = "/news?language=" + languageSelect.value;
+            });
+        });
+    </script>
+</html>

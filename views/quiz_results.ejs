@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>News - Formula House</title>
+        <%- include('components/head.ejs') %>
+        <style>
+            .result-container {
+                margin-top: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="d-flex flex-column justify-content-between vh-100">
+            <%- include('components/navbar.ejs') %>
+
+            <div class="container result-container">
+                <h1>Quiz Results</h1>
+                <p class="fs-4">Your Score: <%= score %> out of <%= totalQuestions %></p>
+                <% if (passedWithinTime) { %>
+                <p class="alert alert-success">Congratulations! You passed the quiz within the time limit.</p>
+                <% } else { %>
+                <p class="alert alert-warning">You did not complete the quiz within the time limit or did not pass. Try again!</p>
+                <% } %>
+                <a href="/quiz" class="btn btn-primary">Take Quiz Again</a>
+            </div>
+            <br />
+            <br />
+
+            <div class="container">
+                <div class="row">
+                    <div class="social-share d-flex justify-content-between">
+                        <a
+                            href="https://twitter.com/intent/tweet?text=I've%20just%20passed%20this%20FORMULA%20ONE%20WORLD%20CHAMPIONSHIP%20QUIZ%20for%20<%= score %>.%20Can%20you%20beat%20my%20result?%20Check%20it%20out%20here%20-%3E%20https%3A%2F%2Ffakelink.com"
+                            class="btn btn-info"
+                            target="_blank"
+                            >Share on Twitter</a
+                        >
+
+                        <a
+                            href="https://telegram.me/share/url?url=https%3A%2F%2Ffakelink.com&text=I've%20just%20passed%20this%20FORMULA%20ONE%20WORLD%20CHAMPIONSHIP%20QUIZ%20for%20<%= score %>.%20Can%20you%20beat%20my%20result?%20Check%20it%20out%20here%20-%3E"
+                            class="btn btn-primary"
+                            target="_blank"
+                            >Share on Telegram</a
+                        >
+
+                        <a
+                            href="https://api.whatsapp.com/send?text=I've%20just%20passed%20this%20FORMULA%20ONE%20WORLD%20CHAMPIONSHIP%20QUIZ%20for%20<%= score %>.%20Can%20you%20beat%20my%20result?%20Check%20it%20out%20here%20-%3E%20https%3A%2F%2Ffakelink.com"
+                            class="btn btn-success"
+                            target="_blank"
+                            >Share on WhatsApp</a
+                        >
+
+                        <a
+                            href="http://vk.com/share.php?url=https%3A%2F%2Ffakelink.com&title=I've%20just%20passed%20this%20FORMULA%20ONE%20WORLD%20CHAMPIONSHIP%20QUIZ%20for%20<%= score %>.%20Can%20you%20beat%20my%20result?%20Check%20it%20out%20here%20-%3E"
+                            class="btn btn-secondary"
+                            target="_blank"
+                            >Share on VK</a
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <%- include('components/footer.ejs') %>
+        </div>
+    </body>
+    <script></script>
+</html>

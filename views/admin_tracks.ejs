@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tracks - Admin Formula House</title>
+        <%- include('./components/head.ejs') %>
+    </head>
+    <body>
+        <%- include('./components/navbar.ejs') %>
+
+        <div class="container my-4">
+            <h2>Tracks Management</h2>
+            <button class="btn btn-danger py-2 px-5 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#addTrackModal">Add Track</button>
+            <!-- Error & Success Messages -->
+            <% if (error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } else if (success) { %>
+            <div class="alert alert-success"><%= success %></div>
+            <% } %>
+        </div>
+        <!-- Modal -->
+        <div class="container">
+            <div class="modal fade" id="addTrackModal" tabindex="-1" aria-labelledby="addTrackModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addTrackModalLabel">Add New Track</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="/admin/tracks/add" method="POST">
+                            <div class="modal-body">
+                                <!-- Each input field -->
+                                <div class="mb-3">
+                                    <label for="trackName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="trackName" name="name" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackNameRU" class="form-label">Name RU</label>
+                                    <input type="text" class="form-control" id="trackNameRU" name="name_ru" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="trackDescription" name="description" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackDescriptionRU" class="form-label">Description RU</label>
+                                    <textarea class="form-control" id="trackDescriptionRU" name="description_ru" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackCountry" class="form-label">Country</label>
+                                    <input type="text" class="form-control" id="trackCountry" name="country" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackCountryRU" class="form-label">Country RU</label>
+                                    <input type="text" class="form-control" id="trackCountryRU" name="country_ru" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackCity" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="trackCity" name="city" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackCityRU" class="form-label">City RU</label>
+                                    <input type="text" class="form-control" id="trackCityRU" name="city_ru" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackLength" class="form-label">Length (m)</label>
+                                    <input type="number" class="form-control" id="trackLength" name="length" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackCorners" class="form-label">Corners</label>
+                                    <input type="number" class="form-control" id="trackCorners" name="corners" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackAltitudeDifference" class="form-label">Altitude Difference (m)</label>
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id="trackAltitudeDifference"
+                                        name="attitude_difference"
+                                        required
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackLink1" class="form-label">Link 1</label>
+                                    <input type="text" class="form-control" id="trackLink1" name="link1" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackLink2" class="form-label">Link 2</label>
+                                    <input type="text" class="form-control" id="trackLink2" name="link2" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="trackLink3" class="form-label">Link 3</label>
+                                    <input type="text" class="form-control" id="trackLink3" name="link3" required />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger">Add Track</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tracks Table -->
+        <div class="table-responsive">
+            <table class="table table-dark rounded">
+                <thead>
+                    <tr class="">
+                        <!-- Table Headers -->
+                        <th class="p-3">Name</th>
+                        <th class="p-3">Name RU</th>
+                        <th class="p-3">Description</th>
+                        <th class="p-3">Description RU</th>
+                        <th class="p-3">Country</th>
+                        <th class="p-3">Country RU</th>
+                        <th class="p-3">City</th>
+                        <th class="p-3">City RU</th>
+                        <th class="p-3">Length (m)</th>
+                        <th class="p-3">Corners</th>
+                        <th class="p-3">Altitude Difference (m)</th>
+                        <th class="p-3">Created At</th>
+                        <th class="p-3">Link 1</th>
+                        <th class="p-3">Link 2</th>
+                        <th class="p-3">Link 3</th>
+                        <th class="p-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tracks.forEach(function(track) { %>
+                    <tr>
+                        <!-- Track Details -->
+                        <td class="p-3"><%= track.name %></td>
+                        <td class="p-3"><%= track.name_ru %></td>
+                        <td class="p-3"><%= track.description %></td>
+                        <td class="p-3"><%= track.description_ru %></td>
+                        <td class="p-3"><%= track.country %></td>
+                        <td class="p-3"><%= track.country_ru %></td>
+                        <td class="p-3"><%= track.city %></td>
+                        <td class="p-3"><%= track.city_ru %></td>
+                        <td class="p-3"><%= track.length %></td>
+                        <td class="p-3"><%= track.corners %></td>
+                        <td class="p-3"><%= track.attitude_difference %></td>
+                        <td class="p-3"><%= track.created_at.toLocaleDateString() %></td>
+                        <td class="p-3"><a href="<%= track.link1 %>">Image-1</a></td>
+                        <td class="p-3"><a href="<%= track.link2 %>">Image-2</a></td>
+                        <td class="p-3"><a href="<%= track.link3 %>">Image-3</a></td>
+                        <td class="p-3">
+                            <a class="btn btn-success btn-sm" href="/admin/tracks/edit/<%= track._id %>">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="/admin/tracks/delete/<%= track._id %>">Delete</a>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+
+        <%- include('./components/footer.ejs') %>
+    </body>
+</html>

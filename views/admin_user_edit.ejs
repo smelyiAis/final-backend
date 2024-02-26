@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edit User <%= us.username %> - Formula House</title>
+        <%- include('components/head.ejs') %>
+        <style>
+            body {
+                background: url("/images/login_bg.jpg") no-repeat center center fixed;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('components/navbar.ejs') %>
+
+        <div class="d-flex flex-column justify-content-between vh-100">
+            <div class="login-container">
+                <form class="login-form rounded" method="POST" action="/admin/users/edit/<%= us._id %>">
+                    <h2 class="text-center">Edit User <%= us.username %></h2>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            name="username"
+                            placeholder="Fernando Alonso"
+                            value="<%= us.username %>"
+                            required
+                        />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            placeholder="thebigboss228"
+                            value="<%= us.email %>"
+                            required
+                        />
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Submit</button>
+                </form>
+            </div>
+
+            <%- include('components/footer.ejs') %>
+        </div>
+    </body>
+</html>
